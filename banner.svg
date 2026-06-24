@@ -53,26 +53,28 @@
       </feMerge>
     </filter>
 
-    <!-- Masks for Typing Animations -->
-    <mask id="mask-welcome">
-      <rect x="0" y="0" width="0" height="300" fill="white">
-        <animate attributeName="width" from="0" to="350" dur="1.5s" begin="0.2s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
+    <!-- Clip Paths for Typing Animations (Fallback to visible width) -->
+    <clipPath id="clip-welcome">
+      <rect x="0" y="-20" width="160" height="40">
+        <set attributeName="width" to="0" begin="0s" dur="0.2s" fill="freeze" />
+        <animate attributeName="width" from="0" to="160" dur="1.0s" begin="0.2s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
       </rect>
-    </mask>
-    <mask id="mask-name">
-      <rect x="0" y="0" width="0" height="300" fill="white">
-        <animate attributeName="width" from="0" to="400" dur="2s" begin="1.7s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
+    </clipPath>
+    <clipPath id="clip-name">
+      <rect x="-10" y="-50" width="280" height="80">
+        <set attributeName="width" to="0" begin="0s" dur="1.2s" fill="freeze" />
+        <animate attributeName="width" from="0" to="280" dur="1.2s" begin="1.2s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
       </rect>
-    </mask>
-    <mask id="mask-sub">
-      <rect x="0" y="0" width="0" height="300" fill="white">
-        <animate attributeName="width" from="0" to="400" dur="2.5s" begin="3.7s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
+    </clipPath>
+    <clipPath id="clip-sub">
+      <rect x="0" y="-20" width="340" height="40">
+        <set attributeName="width" to="0" begin="0s" dur="2.4s" fill="freeze" />
+        <animate attributeName="width" from="0" to="340" dur="1.5s" begin="2.4s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
       </rect>
-    </mask>
+    </clipPath>
   </defs>
 
   <style>
-    /* Styling rules */
     .title-sub {
       font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
       font-size: 14px;
@@ -91,16 +93,9 @@
     .number { fill: #b224ef; }
 
     /* Blinking Cursor Styling */
-    .cursor-welcome {
+    .cursor-welcome, .cursor-name, .cursor-sub {
       animation: blink 0.8s infinite steps(2, start);
     }
-    .cursor-name {
-      animation: blink 0.8s infinite steps(2, start);
-    }
-    .cursor-sub {
-      animation: blink 0.8s infinite steps(2, start);
-    }
-
     @keyframes blink {
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
@@ -113,7 +108,6 @@
     .floating-reverse {
       animation: float-rev 10s ease-in-out infinite alternate;
     }
-
     @keyframes float {
       0% { transform: translateY(0px) rotate(0deg); }
       100% { transform: translateY(-15px) rotate(5deg); }
@@ -130,19 +124,6 @@
     @keyframes pulse {
       0% { opacity: 0.3; transform: scale(1); }
       100% { opacity: 0.6; transform: scale(1.1); }
-    }
-
-    /* Code Line Typing Animation for IDE Mockup */
-    .code-line {
-      opacity: 0;
-      transform: translateX(-10px);
-      animation: slideIn 0.5s ease-out forwards;
-    }
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
     }
   </style>
 
@@ -179,7 +160,6 @@
 
   <!-- Drifting Tech Background Symbols -->
   <g class="floating-element" style="transform-origin: 150px 70px; opacity: 0.15;">
-    <!-- Floating tags & curly brackets -->
     <text x="120" y="60" font-family="monospace" font-size="28" fill="#00f2fe" font-weight="bold">&lt;/&gt;</text>
   </g>
   <g class="floating-reverse" style="transform-origin: 380px 220px; opacity: 0.1;">
@@ -191,42 +171,44 @@
 
   <!-- Left Side: Terminal Welcome Intro Text -->
   <g transform="translate(50, 0)">
-    
     <!-- Welcome Text (Line 1) -->
     <g transform="translate(0, 85)">
-      <text x="0" y="0" font-family="'Segoe UI', system-ui, sans-serif" font-size="14" font-weight="800" fill="#00f2fe" letter-spacing="3" mask="url(#mask-welcome)">HELLO WORLD, I'M</text>
-      <!-- Blinking cursor matching typing progress -->
+      <text x="0" y="0" font-family="'Segoe UI', system-ui, sans-serif" font-size="14" font-weight="800" fill="#00f2fe" letter-spacing="3" clip-path="url(#clip-welcome)">HELLO WORLD, I'M</text>
+      <!-- Cursor -->
       <rect x="0" y="-12" width="8" height="14" fill="#00f2fe" class="cursor-welcome">
-        <animate attributeName="x" from="0" to="140" dur="1.5s" begin="0.2s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
-        <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.95;1" dur="1.7s" fill="freeze" />
+        <set attributeName="opacity" to="0" begin="0s" dur="0.2s" fill="freeze" />
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="1.2s" begin="0.2s" fill="freeze" />
+        <animate attributeName="x" from="0" to="150" dur="1.0s" begin="0.2s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
       </rect>
     </g>
 
     <!-- Name Text (Line 2) -->
     <g transform="translate(0, 135)">
-      <text x="0" y="0" font-family="'Segoe UI', system-ui, sans-serif" font-size="42" font-weight="900" fill="url(#text-grad)" filter="url(#soft-glow)" letter-spacing="1" mask="url(#mask-name)">Ervin Regio</text>
-      <!-- Blinking cursor matching name typing -->
+      <text x="0" y="0" font-family="'Segoe UI', system-ui, sans-serif" font-size="42" font-weight="900" fill="url(#text-grad)" filter="url(#soft-glow)" letter-spacing="1" clip-path="url(#clip-name)">Ervin Regio</text>
+      <!-- Cursor -->
       <rect x="0" y="-36" width="10" height="40" fill="#b224ef" class="cursor-name">
-        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.95;1" dur="2s" begin="1.7s" fill="freeze" />
-        <animate attributeName="x" from="0" to="240" dur="2s" begin="1.7s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
+        <set attributeName="opacity" to="0" begin="0s" dur="1.2s" fill="freeze" />
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="1.4s" begin="1.2s" fill="freeze" />
+        <animate attributeName="x" from="0" to="245" dur="1.2s" begin="1.2s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
       </rect>
     </g>
 
     <!-- Subtitle Text (Line 3) -->
     <g transform="translate(0, 175)">
-      <text x="0" y="0" class="title-sub" mask="url(#mask-sub)">&gt; Full-Stack Dev &amp; Creative Designer_</text>
+      <text x="0" y="0" class="title-sub" clip-path="url(#clip-sub)">&gt; Full-Stack Dev &amp; Creative Designer_</text>
+      <!-- Cursor -->
       <rect x="0" y="-11" width="8" height="13" fill="#8f9cae" class="cursor-sub">
-        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.05;1" dur="2.5s" begin="3.7s" fill="freeze" />
-        <animate attributeName="x" from="0" to="285" dur="2.5s" begin="3.7s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
+        <set attributeName="opacity" to="0" begin="0s" dur="2.4s" fill="freeze" />
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.1;1" dur="1.7s" begin="2.4s" fill="freeze" />
+        <animate attributeName="x" from="0" to="285" dur="1.5s" begin="2.4s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
       </rect>
     </g>
   </g>
 
-  <!-- Right Side: IDE Mockup Window (Starts at X=460, Y=40) -->
-  <g transform="translate(460, 40)" filter="url(#neon-glow)">
-    
+  <!-- Right Side: IDE Mockup Window (Starts at X=460, Y=60 for more vertical centering) -->
+  <g transform="translate(460, 60)" filter="url(#neon-glow)">
     <!-- Window Outer Border & Body -->
-    <rect width="290" height="200" rx="10" fill="#0d0f1a" stroke="url(#cyan-pink)" stroke-width="1.5" />
+    <rect width="290" height="160" rx="10" fill="#0d0f1a" stroke="url(#cyan-pink)" stroke-width="1.5" />
     <!-- Header/Title Bar -->
     <rect width="290" height="30" rx="10" fill="#141727" />
     <path d="M 0,20 L 0,30 L 290,30 L 290,20 Z" fill="#141727" /> <!-- Sharp bottom edge for title bar -->
@@ -248,47 +230,60 @@
       <text x="30" y="102">3</text>
       <text x="30" y="122">4</text>
       <text x="30" y="142">5</text>
-      <text x="30" y="162">6</text>
-      <text x="30" y="182">7</text>
     </g>
 
     <!-- Vertical Splitter Line -->
-    <line x1="40" y1="45" x2="40" y2="190" stroke="#1a1e36" stroke-width="1" />
+    <line x1="40" y1="45" x2="40" y2="150" stroke="#1a1e36" stroke-width="1" />
 
-    <!-- Syntax Highlighted Code Lines -->
-    <!-- Line 1: const developer = { -->
-    <g class="code-line" style="animation-delay: 1.0s;" transform="translate(50, 62)">
-      <text class="code-text"><tspan class="keyword">const</tspan> <tspan class="variable">developer</tspan> = {</text>
+    <!-- Syntax Highlighted Code Lines (Animated with nested groups to prevent Y collapse) -->
+    <!-- Line 1: const dev = { -->
+    <g transform="translate(50, 62)">
+      <g>
+        <set attributeName="opacity" to="0" begin="0s" dur="0.8s" fill="freeze" />
+        <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.8s" fill="freeze" />
+        <animateTransform attributeName="transform" type="translate" values="-10,0; 0,0" dur="0.4s" begin="0.8s" fill="freeze" />
+        <text class="code-text"><tspan class="keyword">const</tspan> <tspan class="variable">dev</tspan> = {</text>
+      </g>
     </g>
     
     <!-- Line 2:   name: "Ervin Regio", -->
-    <g class="code-line" style="animation-delay: 1.6s;" transform="translate(50, 82)">
-      <text class="code-text">  name: <tspan class="string">"Ervin Regio"</tspan>,</text>
+    <g transform="translate(50, 82)">
+      <g>
+        <set attributeName="opacity" to="0" begin="0s" dur="1.1s" fill="freeze" />
+        <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1.1s" fill="freeze" />
+        <animateTransform attributeName="transform" type="translate" values="-10,0; 0,0" dur="0.4s" begin="1.1s" fill="freeze" />
+        <text class="code-text">  name: <tspan class="string">"Ervin Regio"</tspan>,</text>
+      </g>
     </g>
 
-    <!-- Line 3:   role: "Full-Stack Engineer", -->
-    <g class="code-line" style="animation-delay: 2.2s;" transform="translate(50, 102)">
-      <text class="code-text">  role: <tspan class="string">"Builder of Things"</tspan>,</text>
+    <!-- Line 3:   role: "Full-Stack Dev", -->
+    <g transform="translate(50, 102)">
+      <g>
+        <set attributeName="opacity" to="0" begin="0s" dur="1.4s" fill="freeze" />
+        <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1.4s" fill="freeze" />
+        <animateTransform attributeName="transform" type="translate" values="-10,0; 0,0" dur="0.4s" begin="1.4s" fill="freeze" />
+        <text class="code-text">  role: <tspan class="string">"Full-Stack Dev"</tspan>,</text>
+      </g>
     </g>
 
-    <!-- Line 4:   tech: ["React", "Node", "Go"], -->
-    <g class="code-line" style="animation-delay: 2.8s;" transform="translate(50, 122)">
-      <text class="code-text">  tech: [<tspan class="string">"JS"</tspan>, <tspan class="string">"TS"</tspan>, <tspan class="string">"Go"</tspan>],</text>
+    <!-- Line 4:   tech: ["React", "Go", "TS"] -->
+    <g transform="translate(50, 122)">
+      <g>
+        <set attributeName="opacity" to="0" begin="0s" dur="1.7s" fill="freeze" />
+        <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1.7s" fill="freeze" />
+        <animateTransform attributeName="transform" type="translate" values="-10,0; 0,0" dur="0.4s" begin="1.7s" fill="freeze" />
+        <text class="code-text">  tech: [<tspan class="string">"React"</tspan>, <tspan class="string">"Go"</tspan>, <tspan class="string">"TS"</tspan>]</text>
+      </g>
     </g>
 
-    <!-- Line 5:   coffeePowered: true, -->
-    <g class="code-line" style="animation-delay: 3.4s;" transform="translate(50, 142)">
-      <text class="code-text">  coffee: <tspan class="number">true</tspan>,</text>
-    </g>
-
-    <!-- Line 6:   status: "Always learning" -->
-    <g class="code-line" style="animation-delay: 4.0s;" transform="translate(50, 162)">
-      <text class="code-text">  status: <tspan class="string">"Always Learning"</tspan></text>
-    </g>
-
-    <!-- Line 7: }; -->
-    <g class="code-line" style="animation-delay: 4.6s;" transform="translate(50, 182)">
-      <text class="code-text">};</text>
+    <!-- Line 5: }; -->
+    <g transform="translate(50, 142)">
+      <g>
+        <set attributeName="opacity" to="0" begin="0s" dur="2.0s" fill="freeze" />
+        <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="2.0s" fill="freeze" />
+        <animateTransform attributeName="transform" type="translate" values="-10,0; 0,0" dur="0.4s" begin="2.0s" fill="freeze" />
+        <text class="code-text">};</text>
+      </g>
     </g>
   </g>
 </svg>
