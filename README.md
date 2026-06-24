@@ -40,8 +40,19 @@ I am a passionate software developer blending code and aesthetics to build inter
 ### 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=anonymouschichvy&show_icons=true&theme=dark&bg_color=0d0f1a&title_color=00f2fe&icon_color=f35588&text_color=8f9cae&border_color=7000ff" alt="GitHub Stats" width="48%" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=anonymouschichvy&theme=dark&background=0d0f1a&fire=f35588&ring=00f2fe&currStreakLabel=8f9cae&sideNums=8f9cae&sideLabels=8f9cae&dates=8f9cae" alt="GitHub Streak Stats" width="51%" />
+  <img
+    src="https://github-readme-stats.vercel.app/api?username=anonymouschichvy&show_icons=true&theme=dark&bg_color=0d0f1a&title_color=00f2fe&icon_color=f35588&text_color=8f9cae&border_color=7000ff"
+    alt="GitHub Stats"
+    width="100%"
+  />
+</p>
+
+<p align="center">
+  <img
+    src="https://github-readme-streak-stats.herokuapp.com/?user=anonymouschichvy&theme=dark&background=0d0f1a&fire=f35588&ring=00f2fe&currStreakLabel=8f9cae&sideNums=8f9cae&sideLabels=8f9cae&dates=8f9cae"
+    alt="GitHub Streak Stats"
+    width="100%"
+  />
 </p>
 
 ---
