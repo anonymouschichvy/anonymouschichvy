@@ -1,0 +1,294 @@
+<svg viewBox="0 0 800 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bg-grad" cx="50%" cy="30%" r="80%" fx="50%" fy="30%">
+      <stop offset="0%" stop-color="#161829" />
+      <stop offset="50%" stop-color="#0b0d19" />
+      <stop offset="100%" stop-color="#05060b" />
+    </radialGradient>
+
+    <!-- Glowing Circle Gradients -->
+    <radialGradient id="glow-cyan" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#00f2fe" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glow-pink" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f35588" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#f35588" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glow-purple" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7000ff" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#7000ff" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Linear Gradients for Text & Accents -->
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="50%" stop-color="#b224ef" />
+      <stop offset="100%" stop-color="#ff0844" />
+    </linearGradient>
+    <linearGradient id="cyan-pink" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="100%" stop-color="#f35588" />
+    </linearGradient>
+    <linearGradient id="grid-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7000ff" stop-opacity="0" />
+      <stop offset="50%" stop-color="#7000ff" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#00f2fe" stop-opacity="0.5" />
+    </linearGradient>
+
+    <!-- Neon Glow Filter -->
+    <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Masks for Typing Animations -->
+    <mask id="mask-welcome">
+      <rect x="0" y="0" width="0" height="300" fill="white">
+        <animate attributeName="width" from="0" to="350" dur="1.5s" begin="0.2s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
+      </rect>
+    </mask>
+    <mask id="mask-name">
+      <rect x="0" y="0" width="0" height="300" fill="white">
+        <animate attributeName="width" from="0" to="400" dur="2s" begin="1.7s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
+      </rect>
+    </mask>
+    <mask id="mask-sub">
+      <rect x="0" y="0" width="0" height="300" fill="white">
+        <animate attributeName="width" from="0" to="400" dur="2.5s" begin="3.7s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
+      </rect>
+    </mask>
+  </defs>
+
+  <style>
+    /* Styling rules */
+    .title-sub {
+      font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      fill: #8f9cae;
+    }
+    .code-text {
+      font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      font-size: 12px;
+      fill: #a0aec0;
+    }
+    .keyword { fill: #f35588; font-weight: bold; }
+    .string { fill: #00f2fe; }
+    .variable { fill: #ffb199; }
+    .comment { fill: #4a5568; font-style: italic; }
+    .number { fill: #b224ef; }
+
+    /* Blinking Cursor Styling */
+    .cursor-welcome {
+      animation: blink 0.8s infinite steps(2, start);
+    }
+    .cursor-name {
+      animation: blink 0.8s infinite steps(2, start);
+    }
+    .cursor-sub {
+      animation: blink 0.8s infinite steps(2, start);
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Floating Animations for Code Elements */
+    .floating-element {
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .floating-reverse {
+      animation: float-rev 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-15px) rotate(5deg); }
+    }
+    @keyframes float-rev {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(12px) rotate(-8deg); }
+    }
+
+    /* Pulsing Ambient Glows */
+    .pulsing-glow {
+      animation: pulse 6s ease-in-out infinite alternate;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    /* Code Line Typing Animation for IDE Mockup */
+    .code-line {
+      opacity: 0;
+      transform: translateX(-10px);
+      animation: slideIn 0.5s ease-out forwards;
+    }
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
+
+  <!-- Background Base -->
+  <rect width="100%" height="100%" fill="url(#bg-grad)" />
+
+  <!-- Ambient Pulsing Glow Backgrounds -->
+  <circle cx="100" cy="80" r="180" fill="url(#glow-purple)" class="pulsing-glow" style="transform-origin: 100px 80px;" />
+  <circle cx="700" cy="50" r="160" fill="url(#glow-cyan)" class="pulsing-glow" style="animation-delay: -2s; transform-origin: 700px 50px;" />
+  <circle cx="450" cy="250" r="120" fill="url(#glow-pink)" class="pulsing-glow" style="animation-delay: -4s; transform-origin: 450px 250px;" />
+
+  <!-- Animated Perspective Grid -->
+  <g stroke="url(#grid-grad)" stroke-width="1">
+    <!-- Horizon Line -->
+    <line x1="0" y1="180" x2="800" y2="180" opacity="0.3" />
+    
+    <!-- Perspective lines radiating from vanishing point (400, 160) -->
+    <line x1="400" y1="180" x2="-200" y2="300" />
+    <line x1="400" y1="180" x2="0" y2="300" />
+    <line x1="400" y1="180" x2="200" y2="300" />
+    <line x1="400" y1="180" x2="400" y2="300" />
+    <line x1="400" y1="180" x2="600" y2="300" />
+    <line x1="400" y1="180" x2="800" y2="300" />
+    <line x1="400" y1="180" x2="1000" y2="300" />
+
+    <!-- Perspective Horizontal Grid lines -->
+    <line x1="0" y1="185" x2="800" y2="185" opacity="0.1" />
+    <line x1="0" y1="195" x2="800" y2="195" opacity="0.2" />
+    <line x1="0" y1="210" x2="800" y2="210" opacity="0.3" />
+    <line x1="0" y1="230" x2="800" y2="230" opacity="0.5" />
+    <line x1="0" y1="260" x2="800" y2="260" opacity="0.7" />
+    <line x1="0" y1="300" x2="800" y2="300" stroke-width="1.5" />
+  </g>
+
+  <!-- Drifting Tech Background Symbols -->
+  <g class="floating-element" style="transform-origin: 150px 70px; opacity: 0.15;">
+    <!-- Floating tags & curly brackets -->
+    <text x="120" y="60" font-family="monospace" font-size="28" fill="#00f2fe" font-weight="bold">&lt;/&gt;</text>
+  </g>
+  <g class="floating-reverse" style="transform-origin: 380px 220px; opacity: 0.1;">
+    <text x="360" y="240" font-family="monospace" font-size="36" fill="#f35588" font-weight="bold">{}</text>
+  </g>
+  <g class="floating-element" style="transform-origin: 50px 230px; opacity: 0.12; animation-delay: -3s;">
+    <text x="40" y="220" font-family="monospace" font-size="22" fill="#7000ff" font-weight="bold">const</text>
+  </g>
+
+  <!-- Left Side: Terminal Welcome Intro Text -->
+  <g transform="translate(50, 0)">
+    
+    <!-- Welcome Text (Line 1) -->
+    <g transform="translate(0, 85)">
+      <text x="0" y="0" font-family="'Segoe UI', system-ui, sans-serif" font-size="14" font-weight="800" fill="#00f2fe" letter-spacing="3" mask="url(#mask-welcome)">HELLO WORLD, I'M</text>
+      <!-- Blinking cursor matching typing progress -->
+      <rect x="0" y="-12" width="8" height="14" fill="#00f2fe" class="cursor-welcome">
+        <animate attributeName="x" from="0" to="140" dur="1.5s" begin="0.2s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
+        <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.95;1" dur="1.7s" fill="freeze" />
+      </rect>
+    </g>
+
+    <!-- Name Text (Line 2) -->
+    <g transform="translate(0, 135)">
+      <text x="0" y="0" font-family="'Segoe UI', system-ui, sans-serif" font-size="42" font-weight="900" fill="url(#text-grad)" filter="url(#soft-glow)" letter-spacing="1" mask="url(#mask-name)">Ervin Regio</text>
+      <!-- Blinking cursor matching name typing -->
+      <rect x="0" y="-36" width="10" height="40" fill="#b224ef" class="cursor-name">
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.95;1" dur="2s" begin="1.7s" fill="freeze" />
+        <animate attributeName="x" from="0" to="240" dur="2s" begin="1.7s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
+      </rect>
+    </g>
+
+    <!-- Subtitle Text (Line 3) -->
+    <g transform="translate(0, 175)">
+      <text x="0" y="0" class="title-sub" mask="url(#mask-sub)">&gt; Full-Stack Dev &amp; Creative Designer_</text>
+      <rect x="0" y="-11" width="8" height="13" fill="#8f9cae" class="cursor-sub">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.05;1" dur="2.5s" begin="3.7s" fill="freeze" />
+        <animate attributeName="x" from="0" to="285" dur="2.5s" begin="3.7s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4, 0, 0.2, 1" />
+      </rect>
+    </g>
+  </g>
+
+  <!-- Right Side: IDE Mockup Window (Starts at X=460, Y=40) -->
+  <g transform="translate(460, 40)" filter="url(#neon-glow)">
+    
+    <!-- Window Outer Border & Body -->
+    <rect width="290" height="200" rx="10" fill="#0d0f1a" stroke="url(#cyan-pink)" stroke-width="1.5" />
+    <!-- Header/Title Bar -->
+    <rect width="290" height="30" rx="10" fill="#141727" />
+    <path d="M 0,20 L 0,30 L 290,30 L 290,20 Z" fill="#141727" /> <!-- Sharp bottom edge for title bar -->
+
+    <!-- Window Buttons -->
+    <circle cx="18" cy="15" r="5" fill="#ff5f56" />
+    <circle cx="32" cy="15" r="5" fill="#ffbd2e" />
+    <circle cx="46" cy="15" r="5" fill="#27c93f" />
+    
+    <!-- Editor Tab -->
+    <path d="M 75,30 L 85,10 L 175,10 L 185,30 Z" fill="#0d0f1a" />
+    <text x="95" y="21" font-family="'Segoe UI', system-ui, sans-serif" font-size="10" font-weight="600" fill="#8f9cae">profile.js</text>
+    <text x="162" y="21" font-family="monospace" font-size="9" fill="#f35588">×</text>
+
+    <!-- Code Line Numbers -->
+    <g font-family="monospace" font-size="11" fill="#4a5568" text-anchor="end">
+      <text x="30" y="62">1</text>
+      <text x="30" y="82">2</text>
+      <text x="30" y="102">3</text>
+      <text x="30" y="122">4</text>
+      <text x="30" y="142">5</text>
+      <text x="30" y="162">6</text>
+      <text x="30" y="182">7</text>
+    </g>
+
+    <!-- Vertical Splitter Line -->
+    <line x1="40" y1="45" x2="40" y2="190" stroke="#1a1e36" stroke-width="1" />
+
+    <!-- Syntax Highlighted Code Lines -->
+    <!-- Line 1: const developer = { -->
+    <g class="code-line" style="animation-delay: 1.0s;" transform="translate(50, 62)">
+      <text class="code-text"><tspan class="keyword">const</tspan> <tspan class="variable">developer</tspan> = {</text>
+    </g>
+    
+    <!-- Line 2:   name: "Ervin Regio", -->
+    <g class="code-line" style="animation-delay: 1.6s;" transform="translate(50, 82)">
+      <text class="code-text">  name: <tspan class="string">"Ervin Regio"</tspan>,</text>
+    </g>
+
+    <!-- Line 3:   role: "Full-Stack Engineer", -->
+    <g class="code-line" style="animation-delay: 2.2s;" transform="translate(50, 102)">
+      <text class="code-text">  role: <tspan class="string">"Builder of Things"</tspan>,</text>
+    </g>
+
+    <!-- Line 4:   tech: ["React", "Node", "Go"], -->
+    <g class="code-line" style="animation-delay: 2.8s;" transform="translate(50, 122)">
+      <text class="code-text">  tech: [<tspan class="string">"JS"</tspan>, <tspan class="string">"TS"</tspan>, <tspan class="string">"Go"</tspan>],</text>
+    </g>
+
+    <!-- Line 5:   coffeePowered: true, -->
+    <g class="code-line" style="animation-delay: 3.4s;" transform="translate(50, 142)">
+      <text class="code-text">  coffee: <tspan class="number">true</tspan>,</text>
+    </g>
+
+    <!-- Line 6:   status: "Always learning" -->
+    <g class="code-line" style="animation-delay: 4.0s;" transform="translate(50, 162)">
+      <text class="code-text">  status: <tspan class="string">"Always Learning"</tspan></text>
+    </g>
+
+    <!-- Line 7: }; -->
+    <g class="code-line" style="animation-delay: 4.6s;" transform="translate(50, 182)">
+      <text class="code-text">};</text>
+    </g>
+  </g>
+</svg>
